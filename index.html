@@ -1,0 +1,106 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>synth quartet</title>
+	<script src="p5.js"></script>
+	<script src="p5.sound.js"></script>
+</head>
+<body>
+	<p>Each row is played in 0.1 seconds</p>
+	<p>and you repersent pitches like this(must not use flats and no pitch above b#9 (not c10) and below c0):</p>
+	<p>d4 f#4 a4 c5<br />d4 f4 g4 b4<br />c4 e4 g4 a#4</p>
+	<textarea id="noteinput" cols="14" rows="40"></textarea>
+	<button onclick="play()">play</button>
+</body>
+<script>
+	let s1 = new p5.SqrOsc(256);
+	let s2 = new p5.SqrOsc(256);
+	let s3 = new p5.SqrOsc(256);
+	let s4 = new p5.SqrOsc(256);
+	let getFreq = (str) => {
+		let c4 = 220*(2**(1/12))**3;
+		if (str.length == 2) {
+			// spaghet
+			switch (str[0]) {
+				case "c": {
+					return c4 * 2**(Number(str[1]) - 4)
+				}
+				case "d": {
+					return c4 * 2**(Number(str[1]) - 4) * (2**(1/12))**2;
+				}
+				case "e": {
+					return c4 * 2**(Number(str[1]) - 4) * (2**(1/12))**4;
+				}
+				case "f": {
+					return c4 * 2**(Number(str[1]) - 4) * (2**(1/12))**5;
+				}
+				case "g": {
+					return c4 * 2**(Number(str[1]) - 4) * (2**(1/12))**7;
+				}
+				case "a": {
+					return c4 * 2**(Number(str[1]) - 4) * (2**(1/12))**9;
+				}
+				case "b": {
+					return c4 * 2**(Number(str[1]) - 4) * (2**(1/12))**11;
+				}
+			};
+		} else if (str.length == 3) {
+			// spaghet
+			switch (str[0]) {
+				case "c": {
+					return c4 * 2**(Number(str[2]) - 4) * (2**(1/12))**1;
+				}
+				case "d": {
+					return c4 * 2**(Number(str[2]) - 4) * (2**(1/12))**3;
+				}
+				case "e": {
+					return c4 * 2**(Number(str[2]) - 4) * (2**(1/12))**5;
+				}
+				case "f": {
+					return c4 * 2**(Number(str[2]) - 4) * (2**(1/12))**6;
+				}
+				case "g": {
+					return c4 * 2**(Number(str[2]) - 4) * (2**(1/12))**8;
+				}
+				case "a": {
+					return c4 * 2**(Number(str[2]) - 4) * (2**(1/12))**10;
+				}
+				case "b": {
+					return c4 * 2**(Number(str[2]) - 3);
+				}
+			};
+		};
+		return 440;
+	}
+	async function play() {
+		let all = document.querySelector("#noteinput").value.split("\n");
+		let allChords = [];
+		for (let i = 0; i < all.length; i++) {
+			allChords[i] = all[i].split(" ");
+		}
+		for (let i = 0; i < allChords.length; i++) {
+			s1.freq(getFreq(allChords[i][0]));
+			s2.freq(getFreq(allChords[i][1]));
+			s3.freq(getFreq(allChords[i][2]));
+			s4.freq(getFreq(allChords[i][3]));
+			s1.start();
+			s2.start();
+			s3.start();
+			s4.start();
+			await delay(1000);
+			s1.stop();
+			s2.stop();
+			s3.stop();
+			s4.stop();
+		}
+	}
+	async function delay(ms) {
+		return new Promise((resolve, reject) => {
+			setTimeout(()=>{
+				resolve()
+			}, ms)
+		})
+	}
+</script>
+</html>
