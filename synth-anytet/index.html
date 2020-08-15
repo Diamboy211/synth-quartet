@@ -1,0 +1,21 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>synth quartet</title>
+	<script defer src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/addons/p5.sound.js"></script>
+	<script defer src="_.js"></script>
+</head>
+<body>
+	<p>Each row is played in 1 seconds</p>
+	<p>no pitch above b#9 (c10 is invalid) and below cb0 (b-1 is invalid)</p>
+	<p>and you repersent pitches like this:</p>
+	<p>d4 f#4 a4 c5<br />d4 f4 g4 b4<br />c4 e4 g4 a#4</p>
+	<p>Number of voices:</p>
+	<input type="text" id="voices" placeholder="8"><button onclick="init()">Apply</button>
+	<p>Pitch input:</p>
+	<textarea id="noteinput" cols="14" rows="40"></textarea>
+	<button onclick="play()">play</button>
+</body>
+</html>
