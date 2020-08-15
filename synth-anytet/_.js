@@ -15,7 +15,7 @@ let getFreq = (str) => {
 	let c4 = 220*(2**(1/12))**3;
 	if (str.length == 2) {
 		// spaghet
-		switch (str[0]) {
+		switch (str[0].toLowerCase()) {
 			case "c": {
 				return c4 * 2**(Number(str[1]) - 4)
 			}
@@ -40,7 +40,7 @@ let getFreq = (str) => {
 		};
 	} else if (str.length == 3) {
 		// spaghet
-		switch (str[0]) {
+		switch (str[0].toLowerCase()) {
 			case "c": {
 				return c4 * 2**(Number(str[2]) - 4) * (2**(1/12))**( 0 + ((str[1] == "#") ? 1 : -1) );
 			}
