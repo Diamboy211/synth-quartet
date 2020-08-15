@@ -10,6 +10,10 @@ function init() {
 		synths.push(new p5.SqrOsc(256));
 	}	
 }
+function changeTempo() {
+	let bpm = Number(document.getElementById("tempo").value);
+	delayms = 1000/(bpm/60);
+}
 init();
 let getFreq = (str) => {
 	let c4 = 220*(2**(1/12))**3;
