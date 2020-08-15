@@ -7,11 +7,12 @@
 	<script src="p5.sound.js"></script>
 </head>
 <body>
-	<p>Each row is played in 0.1 seconds</p>
+	<p>Each row is played in 1 seconds</p>
 	<p>and you repersent pitches like this(must not use flats and no pitch above b#9 (not c10) and below c0):</p>
 	<p>d4 f#4 a4 c5<br />d4 f4 g4 b4<br />c4 e4 g4 a#4</p>
 	<textarea id="noteinput" cols="14" rows="40"></textarea>
 	<button onclick="play()">play</button>
+	<a href="./synth-anytet/index.html">go to here for infinite voices and flats</a>
 </body>
 <script>
 	let s1 = new p5.SqrOsc(256);
