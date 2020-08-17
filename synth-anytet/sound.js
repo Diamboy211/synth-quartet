@@ -17,7 +17,8 @@ function changeTempo() {
 init();
 let getFreq = (str) => {
 	let c4 = 220*(2**(1/12))**3;
-	if (str.length == 2) {
+	if (str == "rest") return 0
+	else if (str.length == 2) {
 		// spaghet
 		switch (str[0].toLowerCase()) {
 			case "c": {
@@ -94,9 +95,9 @@ async function play() {
 		// s2.stop();
 		// s3.stop();
 		// s4.stop();
-	}
-	for (let i = 0; i < synths.length; i++) {
-		synths[i].stop();
+		for (let j = 0; j < allChords[i].length; j++) {
+			synths[j].stop();
+		};
 	}
 }
 async function delay(ms) {
