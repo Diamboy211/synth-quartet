@@ -90,13 +90,13 @@ async function play() {
 			synths[j].start();
 		};
 		await delay(delayms);
-		for (let j = 0; j < allChords[i].length; j++) {
-			synths[j].stop();
-		};
 		// s1.stop();
 		// s2.stop();
 		// s3.stop();
 		// s4.stop();
+	}
+	for (let i = 0; i < synths.length; i++) {
+		synths[i].stop();
 	}
 }
 async function delay(ms) {
